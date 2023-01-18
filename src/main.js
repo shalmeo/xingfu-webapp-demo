@@ -1,17 +1,24 @@
-import { createApp } from 'vue'
+import { createApp } from "vue"
 
-import Maska from 'maska'
-import axios from 'axios'
+import Maska from "maska"
+import axios from "axios"
 
-import App from '@/App'
+import Vue3EasyDataTable from 'vue3-easy-data-table'
+import 'vue3-easy-data-table/dist/style.css'
+
+import App from "@/App"
 import router from "@/router/router"
 
-
+const http = axios.create({
+    // baseURL: "http://127.0.0.1:8000",
+    headers: {"Authorization": window.Telegram?.WebApp.initData},
+})
 const app = createApp(App)
-app.$http = axios
-app.$http.defaults.headers.common["Authorization"] = window.Telegram?.WebApp.initData
+
+app.component('EasyDataTable', Vue3EasyDataTable)
 
 app
+    .provide("http", http)
     .use(router)
     .use(Maska)
     .mount('#app')
