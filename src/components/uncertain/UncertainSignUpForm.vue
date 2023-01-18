@@ -64,7 +64,7 @@ onMounted(() => {
   uncertain.telegram_username = route.query.telegram_username;
 
   initWebApp("Отправить заявку", () =>
-    sendCreateRequest(http, "/uncertain/sign-up", uncertain)
+    sendCreateRequest(http, "/uncertain", uncertain)
   );
 });
 </script>
